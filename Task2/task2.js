@@ -62,7 +62,7 @@ $(document).ready(function () {
 		'max': 300,
 		'angleOffset': 0,
 		'angleArc': 360,
-		'readOnly': false,
+		'readOnly': true,
 		'width' : '100%',
 		'thickness': 0.2,
 		'lineCap': 'butt',
