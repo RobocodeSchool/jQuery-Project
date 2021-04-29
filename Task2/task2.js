@@ -1,6 +1,3 @@
-// let timeStorage = localStorage;
-// localStorage.removeItem("time");
-
 //Time controll/---------------------------------
 
 let timeStorage = localStorage;
@@ -12,8 +9,6 @@ if (timeStorage.getItem("time") != null) {
 	time = 300;
 	timeStorage.setItem("time", time);
 }
-
-//startTime();
 
 //------------------------------------------------
 
@@ -96,7 +91,7 @@ $(document).ready(function () {
 				do {
 					num = Math.floor(1 + Math.random() * 15);
 				} while (was.includes(num));
-				console.log(num);
+				// console.log(num);
 				startRebus(num);
 			} else {
 				$(".sound, #btnTask, #inputTask").css({
