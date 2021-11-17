@@ -12,27 +12,31 @@
 	<link rel="stylesheet" href="alertify/alertify.default.css" />
 	<script src="alertify/alertify.min.js"></script>
 
+	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+
 	<script src="task3.js" defer></script>
 </head>
 <body>
 	<div class="wrapper">
 		<h1><i><u>Online-Quest</u></i></h1>
-		<h2>Task 3. Image Puzzle (in process)</h2>
+		<h2>Task 3. Memory Game</h2>
 		<article>
 			<p class="slideRules">Description & Rules ▼</p>
 			<div id="rules">
 				<p>
 					<ul style="list-style: none;">
 						<li>
-							<b>Lorem</b> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+							<b>Memory Game</b> - is a game in with you should memorised images and match them.
 						</li>
 						<br>
 						<li>
 							<b>Rules:</b>
 							<ul style="margin-left: 40px">
-								<li>Lorem ipsum dolor</li>
-								<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-								<li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates iste beatae minima velit.</li>
+								<li>If you click on the board item it will reveal the image under it</li>
+								<li>If you click on second item and it image isn't match both will hide</li>
+								<li>If you match two images they will stay revealed</li>
+								<li>After revealing all board, you will finish the quest</li>
+								<li>You will have only 5 minutes to solve this task after pressing the <b>Start</b> button</li>
 							</ul>
 						</li>
 					</ul>
@@ -40,7 +44,7 @@
 			</div>
 		</article>
 
-		<!-- <div class="taskProgress">
+		<div class="taskProgress">
 			<p>Task progress:</p>
 			<input type="text" value="0" class="progress">
 		</div>
@@ -54,23 +58,14 @@
 			<p>Start</p>
 		</div>
 
-		<div class="sound">
-			<audio controls src="#" id="melody">
-				Your browser does not support the
-				<code>audio</code> element.
-		</audio>
+		<div class="gameBoard">
+			
 		</div>
-		<div class="answer"> 
-			<input type="text" id="inputTask" placeholder="Answer...">
-			<input type="button" value="Go!" id="btnTask">
+		
+		<div id="win">
+			<h1>You Win!!!</h1>
+			<a href="../index.html">Go back to main menu</a>
 		</div>
-
-		<a href="../Task3/task3.html">
-			<div id="nextTask">
-				<p>Next Task →</p>
-			</div>
-		</a> -->
-
 	</div>
 </body>
 </html>

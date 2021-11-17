@@ -1,6 +1,3 @@
-// let timeStorage = localStorage;
-// localStorage.removeItem("time");
-
 //Time controll/---------------------------------
 
 let timeStorage = localStorage;
@@ -13,40 +10,81 @@ if (timeStorage.getItem("time") != null) {
 	timeStorage.setItem("time", time);
 }
 
-//startTime();
-
 //------------------------------------------------
 
+let firstCard = null;
+let secondCard = null;
 
-
-let answer = [
-	["гарри поттер","harry potter"],
-	["губка боб","sponge bob", "spongebob", "губка боб квадратные штаны"],
-	["пираты","пираты карибского моря", "капитан джек воробей", "pirates of the caribbean"],
-	["симпсоны","simpsons", "the simpsons"],
-	["звездные войны","star wars", "имперский марш"],
-	["lion ling","the lion king", "король лев", "симба"],
-	["frozen","холодное сердце", "холодное серце", "эльза"],
-	["shrek","шрек"],
-	["shrek","шрек"],
-	["rocky","рокки"],
-	["индиана джонс","indiana jones"],
-	["один дома","home alone"],
-	["терминатор","terminator"],
-	["назад в будущее","back to the future", "марти макфлай"],
-	["охотники за привидениями","ghost busters"]
+let cards = [
+	{
+		name: "php",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/php-logo_1.png",
+		id: 1,
+	},
+	{
+		name: "css3",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/css3-logo.png",
+		id: 2
+	},
+	{
+		name: "html5",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/html5-logo.png",
+		id: 3
+	},
+	{
+		name: "jquery",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/jquery-logo.png",
+		id: 4
+	}, 
+	{
+		name: "javascript",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/js-logo.png",
+		id: 5
+	},
+	{
+		name: "node",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/nodejs-logo.png",
+		id: 6
+	},
+	{
+		name: "photoshop",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/photoshop-logo.png",
+		id: 7
+	},
+	{
+		name: "python",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/python-logo.png",
+		id: 8
+	},
+	{
+		name: "rails",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/rails-logo.png",
+		id: 9
+	},
+	{
+		name: "sass",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/sass-logo.png",
+		id: 10
+	},
+	{
+		name: "sublime",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/sublime-logo.png",
+		id: 11
+	},
+	{
+		name: "wordpress",
+		img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74196/wordpress-logo.png",
+		id: 12
+	}
 ];
-
-let was = [];
 
 let progress = 0;
 
-let num = Math.floor(1 + Math.random() * 15);
-
 $(document).ready(function () {
+	$("#rules").hide();
 	$(".progress").knob({
 		'min': 0, 
-		'max': 10,
+		'max': 12,
 		'angleOffset': -60,
 		'angleArc': 120,
 		'readOnly': true,
@@ -54,21 +92,21 @@ $(document).ready(function () {
 		'thickness': 0.2,
 		'lineCap': 'round',
 		'displayInput' : false,
-		'bgColor' : '#cecae3',
-		'fgColor' : '#3b1b5b'
+		'bgColor' : '#38A3A5',
+		'fgColor' : '#22577A'
 	});
 	$(".time").knob({
 		'min': 0, 
 		'max': 300,
 		'angleOffset': 0,
 		'angleArc': 360,
-		'readOnly': false,
+		'readOnly': true,
 		'width' : '100%',
 		'thickness': 0.2,
 		'lineCap': 'butt',
 		'displayInput' : false,
-		'bgColor' : '#cecae3',
-		'fgColor' : '#3b1b5b'
+		'bgColor' : '#38A3A5',
+		'fgColor' : '#22577A'
 	});
 
 	$(".slideRules").click(function () {
@@ -77,45 +115,85 @@ $(document).ready(function () {
 
 	$("#start").click(function () {
 		$("#start").css('display', 'none');
-		$(".sound").css('display', 'block');
-		startRebus(num);
+		$(".gameBoard").css('display', 'grid');
+		fillBoard();
+		$('.card').on('click', cardClicked);
 		startTime();
-	});
-
-
-	$("#btnTask").click(function() {
-		if (answer[num-1].indexOf($("#inputTask").val().toLowerCase()) != -1) {
-			alertify.success("Right answer!");
-			$("#inputTask").val("");
-			progress++;
-			$(".progress").val(progress).trigger('change');
-			was.push(num);
-			console.log(was);
-
-			if (progress < 10) {
-				do {
-					num = Math.floor(1 + Math.random() * 15);
-				} while (was.includes(num));
-				console.log(num);
-				startRebus(num);
-			} else {
-				$(".sound, #btnTask, #inputTask").css({
-					'display' : 'none'
-				});
-				$("#nextTask").css({
-					'display' : 'flex'
-				});
-				localStorage.removeItem("time");
-			}
-		} else {
-			alertify.error("Wrong answer. Try again!");
-		}
 	});
 });
 
+function fillBoard() {
+	let board = shuffle([...cards, ...cards]);
+	for(let i = 0; i < board.length; i++){
+		let cardHtml = `<div class="card" data-id="${board[i].id}">
+			<div class="front"><img src="" alt="=)"></div>
+			<div class="back"><img src="${board[i].img}" alt="${board[i].name}"></div>
+		</div>`;
+		$('.gameBoard').append(cardHtml);
+	}
+}
 
-function startRebus (arg) {
-	$("#melody").attr("src",`sound/${arg}.mp3`);
+function shuffle(array){
+	let counter = array.length;
+	let temp;
+	let index;
+   // While there are elements in the array
+   while (counter > 0) {
+	// Pick a random index
+	index = Math.floor(Math.random() * counter);
+	// Decrease counter by 1
+	counter--;
+	// And swap the last element with it
+	temp = array[counter];
+	array[counter] = array[index];
+	array[index] = temp;
+	}
+	return array;
+}
+
+function cardClicked(event) {
+	if(secondCard || $(this).hasClass('matched')){
+		return
+	}
+	if(!firstCard){
+		firstCard = $(this);
+		firstCard.addClass('flip');
+		return
+	}
+	if(firstCard){
+		secondCard = $(this);
+		secondCard.addClass('flip');
+		if(firstCard.attr('data-id') == secondCard.attr('data-id')){
+			firstCard.addClass('matched');
+			secondCard.addClass('matched');
+			firstCard = null;
+			secondCard = null;
+			progress++;
+			$('.progress').val(progress).trigger('change');
+			if(progress==12) {
+				win();
+			}
+			return
+		}
+		else {
+			setTimeout(function(){
+				firstCard.removeClass('flip');
+				secondCard.removeClass('flip');
+				firstCard = null;
+				secondCard = null;
+			},600);
+		}
+	}
+}
+
+function win(){
+	$(".gameBoard").css({
+		'display' : 'none'
+	});
+	$("#win").css({
+		'display' : 'flex'
+	});
+	localStorage.removeItem("time");
 }
 
 function startTime () {

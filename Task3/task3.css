@@ -5,11 +5,9 @@
 
 body {
 	font-family: sans-serif;
-	background: #e9e6f0;
+	background: #C7F9CC;
 	letter-spacing: 1px;
 }
-
-
 
 .wrapper {
 	max-width: 50vw;
@@ -33,11 +31,11 @@ article {
 	color: white;
 	width: 100%;
 	box-sizing: border-box;
-	margin-bottom: 50px;
+	margin-bottom: 10px;
 }
 
 .slideRules {
-	background: #3b1b5b;
+	background: #57CC99;
 	font-size: 30px;
 	padding: 10px 20px;
 	border-top-right-radius: 10px;
@@ -51,8 +49,7 @@ article {
 #rules {
 	padding: 20px;
 	font-size: 25px;
-	border-radius-bottom: 10px;
-	background: #cecae3;
+	background: #80ED99;
 	color: black;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
@@ -60,7 +57,7 @@ article {
 
 .taskProgress {
 	position: fixed;
-	top: 45vh;
+	top: 65vh;
 	left: 1vw;
 	padding: 2.5vh;
 }
@@ -84,82 +81,33 @@ article {
 	margin-bottom: 10px;
 }
 
-.sound {
-	width: 65%;
-	text-align: center;
-	margin-bottom: 30px;
-	display: none;
-}
-
-audio {
-	outline: none;
-}
-
-/*.img img{
-	box-shadow: 0 0 20px black;
-	width: 100%;
-}*/
-
-.answer {
-	/*background: yellow;*/
-	width: 65%;
-	padding: 20px;
-	box-sizing: border-box;
-	display: flex;
-	justify-content: center;
-}
-
-#inputTask {
-	flex-grow: 1;
-	font-size: 35px;
-	padding: 10px;
-	background: rgba(0, 0, 0, 0);
-	border: none;
-	border-bottom: 1px solid black;
-}
-
-#inputTask:focus {
-	outline: none;
-}
-
-#btnTask {
-	flex-grow: 1;
-	font-size: 30px;
-	color: white;
-	background: #3b1b5b;
-	border: none;
-	border-bottom: 1px solid black;
-}
-
-#btnTask:hover {
-	cursor: pointer;
-}
-
 canvas {
 	width: 20vw;
 	/*max-width: 20vw;*/
 }
 
-#nextTask {
-	position: fixed;
-	right: 2vw;
-	bottom: 45vh;
-	width: 250px;
-	height: 10vh;
-	font-size: 40px;
-	background: #3b1b5b;
-	color: white;
+#win {
 	display: none;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;	
+}
+
+#win a {
+	padding: 1rem 2rem;
+	font-size: 40px;
+	background: #57CC99;
+	color: white;
 	border-radius: 12px;
+	text-decoration: none;
+	margin-top: 2rem;
 }
 
 #start {
 	width: 250px;
 	height: 10vh;
 	font-size: 40px;
-	background: #3b1b5b;
+	background: #57CC99;
 	color: white;
 	display: flex;
 	justify-content: center;
@@ -170,4 +118,63 @@ canvas {
 
 #start:hover {
 	cursor: pointer;
+}
+
+.gameBoard {
+	width: 100%;
+	gap: 5px;
+	display: none;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(4, 100px);
+}
+
+.gameBoard > div {
+	text-align: center;
+	line-height: 100px;
+	cursor: pointer;
+	transition: all 0.5s;
+	transform-style: preserve-3d;
+}
+
+.front {
+	background-color: #22577A;
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.back {
+	background-color: #38A3A5;
+	backface-visibility: hidden;
+	transform: rotateY(180deg);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+}
+
+.back,.front > img {
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+	max-height: 100%;
+}
+
+.flip {
+	transform: rotateY(180deg);
+}
+
+
+@media all and (max-width: 1300px) {
+	.taskProgress, .timeProgress {
+		width: 200px;
+	}
+}
+
+@media all and (max-width: 1000px) {
+	
 }
