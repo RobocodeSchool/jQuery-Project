@@ -25,14 +25,14 @@ main {
     color: rgb(255, 115, 0);
     font-family: 'Press Start 2P', cursive;
     font-size: 4rem;
-    transition: all ease-in-out 1s;
+    transition: all ease-in-out .5s;
     text-shadow: 0 0 0 #ffffff;
-    animation: rainbow 10s infinite ease-in-out;
+    animation: rainbow 4s infinite ease-in-out;
 }
 
 #start:hover {
-    transform: scale(1.3);
-    text-shadow: 0.3rem 0.3rem 0 #ffffff;
+    transform: scale(1.2);
+    text-shadow: 0.2rem 0.2rem 0 #ffffff;
 }
 
 @keyframes rainbow{

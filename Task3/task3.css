@@ -144,10 +144,12 @@ canvas {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	color: #ffffff;
+	font-weight: bold;
 }
 
 .back {
-	background-color: #38A3A5;
+	background-color: #ffffff;
 	backface-visibility: hidden;
 	transform: rotateY(180deg);
 	position: absolute;
@@ -157,7 +159,7 @@ canvas {
 	bottom: 0;	
 }
 
-.back,.front > img {
+.back img {
 	max-width: 100%;
 	display: block;
 	margin: 0 auto;

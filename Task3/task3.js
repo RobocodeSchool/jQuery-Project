@@ -126,7 +126,7 @@ function fillBoard() {
 	let board = shuffle([...cards, ...cards]);
 	for(let i = 0; i < board.length; i++){
 		let cardHtml = `<div class="card" data-id="${board[i].id}">
-			<div class="front"><img src="" alt="=)"></div>
+			<div class="front">R0B0C0DE</div>
 			<div class="back"><img src="${board[i].img}" alt="${board[i].name}"></div>
 		</div>`;
 		$('.gameBoard').append(cardHtml);
